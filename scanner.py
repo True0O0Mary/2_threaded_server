@@ -1,15 +1,24 @@
 import socket
-from threading import Thread
+from threading import Thread, Lock
+from time import sleep
 
-N = 2**16 - 1
+N = 2**16 
 
-for port in range(1,100):
-    sock = socket.socket()
-    try:
-        print(port)
-        sock.connect(('127.0.0.1', port))
-        print("Порт", i, "открыт")
-    except:
-        continue
-    finally:
-        sock.close()
+port_lock = Lock()
+
+
+def main(n):   
+    for port in range(256):
+        sock = socket.socket()
+        try:
+            # print(port+n)
+            with port_lock:
+                sock.connect(('127.0.0.1', port+n))
+                print("Порт", port+n, "открыт")
+        except:
+            continue
+        
+t = [Thread(target=main, args=[i])
+    for i in range(0, N, N//256)]
+
+[t1.start() for t1 in t]
