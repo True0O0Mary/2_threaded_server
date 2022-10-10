@@ -6,7 +6,7 @@ from history import *
 from authorization import *
 
 SERVER_HOST = "127.0.0.1"
-SERVER_PORT = 9090
+SERVER_PORT = 9091
 sep = "<SEP>"
 
 def listen():
@@ -35,6 +35,7 @@ if __name__ == "__main__":
 
     print("Greet everyone in the chat room")
     while True:
+
         to_send = input()
         if to_send == "q":
             break

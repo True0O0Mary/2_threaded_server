@@ -44,7 +44,7 @@ def login(filename="authorization.json"):
 
 
 def auto():
-    act = int(input('''Choose action: 1 Register new user 2 Log in'''))
+    act = int(input('''Choose action: 1 Register new user 2 Log in: '''))
 
     if act == 1:
         return register()
